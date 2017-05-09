@@ -1,0 +1,50 @@
+// size 375px size(width px)
+@function size($size) {
+  $width: 375;
+  $scale: 10;
+  @return ($size / $width * $scale) * 1rem;
+}
+$bg-c-1: #FFF;
+$bg-c-2: #200c41;
+$bg-c-3: #cc9729;
+$bg-c-4: #8dd9db;
+$bg-c-5: #33d0bf;
+$font-c-1: #494949;
+$font-c-2: #a0a0a0;
+$font-c-3: #b2b2b2;
+$font-c-4: #33d0bf;
+$main-color: #91D4DA;
+$border-color: rgba(0,0,0,0.16);
+$border: size(2) solid $border-color;
+//宽高
+@mixin wh($width, $height){
+  width: $width;
+  height: $height;
+}
+// dpr自定义样式
+@mixin data-dpr($field, $val) {
+  #{$field}: $val;
+  [data-dpr="2"] & {
+      #{$field}: $val * 2;
+  }
+  [data-dpr="3"] & {
+      #{$field}: $val * 3;
+  }
+}
+
+// 字体大小
+@mixin font-size($size){
+  font-size: $size;
+  [data-dpr="2"] & {
+      font-size: $size * 2;
+  }
+  [data-dpr="3"] & {
+      font-size: $size * 3;
+  }
+}
+// 背景图片地址和大小
+@mixin BgUrl($url) { 
+  background-image: url($url);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
