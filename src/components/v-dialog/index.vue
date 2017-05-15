@@ -4,7 +4,7 @@
       <div class="vue-mask" @click="hideOnBlur && (currentValue = false)" v-show="currentValue"></div>
     </transition>
     <transition :name="dialogTransition">
-      <div class="weui-dialog" v-show="currentValue" >
+      <div class="vue-dialog" v-show="currentValue" >
         <slot></slot>
       </div>
     </transition>
@@ -19,11 +19,11 @@
       },
       maskTransition: {
         type: String,
-        default: 'vux-mask'
+        default: 'vue-mask'
       },
       dialogTransition: {
         type: String,
-        default: 'vux-dialog'
+        default: 'vue-dialog'
       },
       hideOnBlur: Boolean,
       scroll: {
@@ -72,5 +72,26 @@
       bottom: 0;
       background: rgba(0,0,0,.6);
     }
+    .weui-mask_transparent{
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+    }
+  }
+  .vue-dialog {
+    position: fixed;
+    z-index: 5000;
+    width: 80%;
+    max-width: size(300);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+    text-align: center;
+    border-radius: size(3);
+    overflow: hidden;
   }
 </style>

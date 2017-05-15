@@ -57,6 +57,7 @@
     "v-tap": "^3.0.1",
     "vue-lazyload": "^1.0.1",
     "vue-loader": "^11.1.4",
+    "vue-scroller": "^2.2.0",
     "vue-style-loader": "^2.0.0",
     "vue-template-compiler": "^2.2.4",
     "vue-virtual-scroll-list": "^1.0.3",

@@ -20,6 +20,7 @@ export default new Router({
     {
       path: '/',
       redirect: '/Github/Novelty'
+      // redirect: '/User'
     },
     {
       path: '/Github',

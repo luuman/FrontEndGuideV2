@@ -1,9 +1,9 @@
 @import "mixin.scss";
-@import 'clearsrollbar.scss';
+// @import 'clearsrollbar.scss';
 @import 'mobilewap.scss';
+@import 'transition.scss';
 html {
   // overflow-y:scroll;
-  overflow: hidden;
   -webkit-text-size-adjust:100%;
   -ms-text-size-adjust:100%;
 }
@@ -84,7 +84,13 @@ ins, a {
 img{
   max-width: 100%;
 }
-body{
+html,body{
   width: 100%;
   height: 100%;
+  overflow: hidden;
+}
+.paper{
+  img{
+    width: 100%;
+  }
 }

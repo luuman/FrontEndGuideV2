@@ -4,7 +4,15 @@ require('!!script-loader!ASSET/fonts/iconfont')
 import Vue from 'vue'
 import App from './app'
 import router from './routers'
-import 'UTIL/flexible'
+// import 'UTIL/flexible'
+import Alert from 'COMPONENT/alert'
+Vue.component('my-alert', Alert)
+
+import SVG from 'COMPONENT/v-svg'
+Vue.component('v-svg', SVG)
+
+// console.time('执行时间')
+// console.timeEnd('执行时间')
 
 import VueLazyload from 'vue-lazyload'
 import loading from 'ASSET/img/loading.png'
@@ -13,9 +21,12 @@ Vue.use(VueLazyload, {
   preLoad: 1.3,
   error: error,
   loading: loading,
-  attempt: 1,
-  listenEvents: [ 'scroll', 'mousewheel' ]
+  // listenEvents: ['scroll', 'wheel', 'mousewheel', 'resize', 'animationend', 'transitionend'],
+  attempt: 1
 })
+
+import VueScroller from 'vue-scroller'
+Vue.use(VueScroller)
 
 // import vueTap from 'v-tap'
 // Vue.use(vueTap)
@@ -37,5 +48,5 @@ new Vue({
   router,
   store,
   template: '<App/>',
-  components: { App }
+  components: { App, Alert }
 })

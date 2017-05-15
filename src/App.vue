@@ -32,14 +32,21 @@
         }
       }
     },
-    computed: {
-    }
+    computed: {}
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
   @import './assets/scss/mixin.scss';
+  #loading{
+    display: none;
+  }
+  .container,.router-view{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+  }
   .icon {
      width: size(20);
      height: size(20);
@@ -47,19 +54,12 @@
      fill: currentColor;
      overflow: hidden;
   }
-  .router-slid-enter-active, .router-slid-leave-active {
-    transition: all .4s;
-  }
-  .router-slid-enter, .router-slid-leave-active {
-    transform: translate3d(2rem, 0, 0);
-    opacity: 0;
-  }
   // vue-router transition
   .router-view {
-    width: 100%;
-    animation-duration: 0.5s;
-    animation-fill-mode: both;
-    backface-visibility: hidden;
+    // width: 100%;
+    // animation-duration: 0.5s;
+    // animation-fill-mode: both;
+    // backface-visibility: hidden;
   }
   .vux-pop-out-enter-active,
   .vux-pop-out-leave-active,

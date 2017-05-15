@@ -1,5 +1,5 @@
 <template>
-  <div class="view">
+  <div ref="navs" class="view">
     <Heads :titles="title">
     </Heads>
   </div>
@@ -10,7 +10,12 @@
     data: () => ({
       title: ''
     }),
-    components: {Heads}
+    components: {Heads},
+    mounted () {
+      let Height = this.$refs.navs.offsetHeight
+      console.log(Height)
+      document.getElementById('app').style.marginBottom = Height + 'px'
+    }
   }
 </script>
 

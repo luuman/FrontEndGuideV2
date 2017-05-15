@@ -18,6 +18,13 @@ export const urlAuthWechat = (appid, link) => {
   return `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}&redirect_uri=${encodeURIComponent(link)}&response_type=code&scope=snsapi_base#wechat_redirect`
 }
 
+export const authorize = () => {
+  let secret = 'abcb4790d98c686e7656d28c756ebbaac5b89d3a'
+  let id = '82c800a8b9db1cb2a145'
+  return `https://github.com/login/oauth/authorize?redirect_uri=${window.location.href}&client_id=${id}&client_secret=${secret}`
+  // return `https://github.com/login/oauth/authorize?scope=public_repo&redirect_uri=${window.location.href}/?error=redirect_uri_mismatch&error_description=The+redirect_uri+MUST+match+the+registered+callback+URL+for+this+application.&error_uri=https://developer.github.com/v3/oauth/%23redirect-uri-mismatch&client_id=${id}&client_secret=${secret}`
+}
+
 /* 存储localStorage */
 export const setLocal = (name, content) => {
   if (!name) return

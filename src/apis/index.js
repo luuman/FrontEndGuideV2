@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const TOKEN = 'f92b04fe9414ee3a91d0e1a697fd8ce12fc9878f'
+const TOKEN = '5ed631ca1c8e770fab0b40b64fe249c7c406837d'
 // const option = {
 //   headers: {
 //     'Authorization': `token ${TOKEN}`
@@ -80,6 +80,12 @@ export default {
   },
   Login (username, reponame) {
     return oGet(`/repos/${username}/${reponame}`)
+  },
+  UsersList (since) {
+    return oGet(`/users?since=${since}`)
+  },
+  Novelty (username, page) {
+    return oGet(`https://github.com/dashboard/index/2?utf8=%E2%9C%93`)
   }
 }
 

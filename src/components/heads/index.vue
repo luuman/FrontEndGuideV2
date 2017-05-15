@@ -1,6 +1,5 @@
 <template>
   <header>
-    <div class="top"></div>
     <div :class="{'transparent': isUserPage, 'header': true, 'show': isShow}" ref="header">
       fdjfkj
     </div>
@@ -10,6 +9,9 @@
   export default {
     mounted () {
       window.addEventListener('scroll', this.Top)
+      let Height = this.$refs.header.offsetHeight
+      // console.log(Height)
+      document.getElementById('app').style.paddingTop = Height + 'px'
     },
     data: () => ({
       wait: false,
@@ -53,10 +55,8 @@
 <style lang="scss" scoped>
   @import '../../assets/scss/mixin.scss';
   header{
-    .top, .header{
-      height: size(44);
-    }
     .header{
+      height: size(44);
       position: fixed;
       left: 0;
       top: 0;
