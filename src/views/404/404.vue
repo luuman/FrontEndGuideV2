@@ -1,5 +1,5 @@
 <template>
-  <div class="view">
+  <div class="view">404
   </div>
 </template>
 <script>
