@@ -86,6 +86,7 @@
     left: 0;
     border-top: size(1) solid #DDD;
     background: #FFF;
+    z-index: 99;
     ul{
       display: flex;
       li{

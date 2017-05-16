@@ -1,9 +1,7 @@
 <template>
-  <header>
-    <div :class="{'transparent': isUserPage, 'header': true, 'show': isShow}" ref="header">
-      fdjfkj
-    </div>
-  </header>
+  <div :class="{'transparent': isUserPage, 'header': true, 'show': isShow}" ref="header">
+    <slot></slot>
+  </div>
 </template>
 <script>
   export default {
@@ -54,27 +52,28 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
   @import '../../assets/scss/mixin.scss';
-  header{
-    .header{
-      height: size(44);
-      position: fixed;
-      left: 0;
-      top: 0;
-      display: -ms-flexbox;
-      display: flex;
-      -ms-flex-pack: justify;
-      justify-content: space-between;
-      width: 100%;
-      // position: relative;
-      z-index: 2;
-      background-color: #0f2035;
-      transform: translate3d(0, 0, 0);
-      box-shadow: 0 3px 5px 0 rgba(15, 31, 52, 0.4);
-      transition: background-color 0.3s;
-    }
-    .transparent{
-      background-color: #224365;
-      box-shadow: none;
-    }
+  .header{
+    height: size(44);
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    color: #FFF;
+    width: 100%;
+    text-align: center;
+    @include font-size(14px);
+    // position: relative;
+    z-index: 2;
+    background-color: #0f2035;
+    transform: translate3d(0, 0, 0);
+    box-shadow: 0 3px 5px 0 rgba(15, 31, 52, 0.4);
+    transition: background-color 0.3s;
+  }
+  .transparent{
+    background-color: #224365;
+    box-shadow: none;
   }
 </style>

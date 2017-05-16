@@ -1,7 +1,7 @@
 <template>
   <div class="dialog" @touchmove="onTouchMove">
     <transition :name="maskTransition">
-      <div class="vue-mask" @click="hideOnBlur && (currentValue = false)" v-show="currentValue"></div>
+      <div @click="hide"><div class="vue-mask" @click="hideOnBlur && (currentValue = false)" v-show="currentValue"></div></div>
     </transition>
     <transition :name="dialogTransition">
       <div class="vue-dialog" v-show="currentValue" >
@@ -54,6 +54,9 @@
     methods: {
       onTouchMove (event) {
         !this.scroll && event.preventDefault()
+      },
+      hide () {
+        this.$parent.showValue = false
       }
     }
   }

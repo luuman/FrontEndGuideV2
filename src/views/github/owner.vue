@@ -1,6 +1,7 @@
 <template>
   <div class="view">
-    <Heads v-if="false" :titles="title"></Heads>
+    <Heads :titles="title">
+    </Heads>
   </div>
 </template>
 <script>

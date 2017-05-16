@@ -1,15 +1,14 @@
 <template>
   <div>
-    <Heads v-if="false" :titles="title"></Heads>
     <div class="List">
-      <audio ref="refresh" src="http://matt.chinauui.com/day_131229/20131229_78a6103ca07c4c097332c3eD7N372K5C.mp3"></audio>
+      <audio ref="refresh" src="../../static/music/refresh.mp3" style="display: none;"></audio>
       <scroller
         :on-refresh="refresh"
         :on-infinite="infinite"
-        refresh-layer-color="#4b8bf4"
-        loading-layer-color="#ec4949"
+        refresh-layer-color="#586069"
+        loading-layer-color="#AAA"
         ref="my_scroller">
-        <svg class="spinner" style="stroke: #4b8bf4;" slot="refresh-spinner" viewBox="0 0 64 64">
+        <svg class="spinner" style="stroke: #586069;" slot="refresh-spinner" viewBox="0 0 64 64">
           <g stroke-width="7" stroke-linecap="round">
             <line x1="10" x2="10" y1="27.3836" y2="36.4931">
               <animate attributeName="y1" dur="750ms" values="16;18;28;18;16;16" repeatCount="indefinite"></animate>
@@ -34,14 +33,20 @@
           </g>
         </svg>
         <!-- content goes here -->
-        <div class="row" v-if="novelty.length" v-for="(List,index) in novelty">
-          <div class="paper">
-            <img v-lazy="List.avatar_url" :data-srcset="List.avatar_url">
+        <!-- <div class="nothing" v-if="!novelty.length">
+          <v-svg :data="'#icon-zan'"></v-svg>
+        </div> -->
+        <div class="main">
+          <div class="row" v-if="novelty.length" v-for="(List,index) in novelty">
+            <List
+              :avatarImg="List.avatar_url"
+              :title="List.login"
+              :time="List.updated_at">
+            </List>
           </div>
-          <div class="avatar"><span>{{List.login}}</span></div>
         </div>
         <!-- custom infinite spinner -->
-        <svg class="spinner" style="fill: #ec4949;" slot="infinite-spinner" viewBox="0 0 64 64">
+        <svg class="spinner" style="fill: #AAA;" slot="infinite-spinner" viewBox="0 0 64 64">
           <g>
             <circle cx="16" cy="32" stroke-width="0" r="3">
               <animate attributeName="fill-opacity" dur="750ms" values=".5;.6;.8;1;.8;.6;.5;.5" repeatCount="indefinite"></animate>
@@ -59,19 +64,22 @@
         </svg>
       </scroller>
     </div>
+    <my-big v-model="showValue" :title="'big.title'"></my-big>
   </div>
 </template>
 <script>
-  import Heads from 'COMPONENT/heads'
+  import List from 'COMPONENT/v-list/follow'
+  import myBig from 'COMPONENT/v-list/big'
   import API from 'API'
   export default {
     data: () => ({
       title: '',
       loading: false,
+      showValue: false,
       count: 0,
       novelty: []
     }),
-    components: {Heads},
+    components: {List, myBig},
     mounted () {
     },
     methods: {
@@ -91,8 +99,8 @@
       },
       infinite (done) {
         setTimeout(() => {
-          console.log(this.novelty.length > 0 && this.novelty.length - 1)
-          let since = this.novelty.length === 0 ? 0 : this.novelty.length - 1
+          console.log(this.novelty.length > 0 && this.novelty.length + 10)
+          let since = this.novelty.length === 0 ? 0 : this.novelty[this.novelty.length - 1].id
           API.UsersList(since)
           .then(res => {
             if (res) {
@@ -106,6 +114,9 @@
             done(true)
           })
         }, 1500)
+      },
+      bigs () {
+        this.showValue = true
       }
     }
   }
@@ -132,22 +143,33 @@
     width: 100%;
     height: 100%;
     position: relative;
-    .row{
-      padding: size(4) size(10);
-      width: 100%;
+    .main{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
       overflow: hidden;
-    }
-    .paper{
-      width: size(50);
-      height: size(50);
-      overflow: hidden;
-      margin-right: size(10);
-      background-size: cover;
-      float: left;
-    }
-    .avatar{
-      @include font-size(12px);
-      font-weight: bold;
+      .row{
+        padding: size(4);
+        box-sizing: border-box;
+        width: size(120);
+        height: size(120);
+        // height: size(375/3);
+        display: inline-block;
+        overflow: hidden;
+        .paper{
+          width: 100%;
+          overflow: hidden;
+          img{
+            position: relative;
+            z-index: -1;
+          }
+        }
+        .avatar{
+          @include font-size(12px);
+          font-weight: bold;
+        }
+      }
     }
     ._v-container>._v-content>.loading-layer .spinner-holder .spinner, ._v-container>._v-content>.pull-to-refresh-layer .spinner-holder .spinner{
       width: 1rem;

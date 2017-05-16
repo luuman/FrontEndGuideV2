@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const TOKEN = '5ed631ca1c8e770fab0b40b64fe249c7c406837d'
+const TOKEN = '3a84b0bda318bd0db915ca5e81b22040fee8f1f4'
 // const option = {
 //   headers: {
 //     'Authorization': `token ${TOKEN}`
@@ -83,9 +83,16 @@ export default {
   },
   UsersList (since) {
     return oGet(`/users?since=${since}`)
+    // since The integer ID of the last User that you've seen.
   },
-  Novelty (username, page) {
-    return oGet(`https://github.com/dashboard/index/2?utf8=%E2%9C%93`)
+  Notifications (page) {
+    return oGet(`/notifications?page=${page}`)
+  },
+  Notifs (page) {
+    return oGet(`/repos/airyland/vux/notifications?page=${page}`)
+  },
+  Get (link) {
+    return oGet(link)
   }
 }
 
