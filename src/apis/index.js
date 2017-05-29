@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const TOKEN = 'ada3673afe08d9e4ab688cdea86c127d84bf13ba'
+const TOKEN = '93a89eb491ce25f7cd243bd51fd8c68b38ae77cd'
 // const option = {
 //   headers: {
 //     'Authorization': `token ${TOKEN}`
@@ -74,38 +74,25 @@ export const oPost = (url, params) => {
   })
 }
 
-export default {
-  ReposList (username) {
-    return oGet(`/users/${username}/repos`)
-  },
-  Login (username, reponame) {
-    return oGet(`/repos/${username}/${reponame}`)
-  },
-  UsersList (since) {
-    return oGet(`/users?since=${since}`)
-    // since The integer ID of the last User that you've seen.
-  },
-  Notifications (page) {
-    return oGet(`/notifications?page=${page}`)
-  },
-  Notifs (page) {
-    return oGet(`/repos/airyland/vux/notifications?page=${page}`)
-  },
-  Get (link) {
-    return oGet(link)
-  }
-}
-
-// import * as repos from './tempdata/repos'
-// export const setpromise = data => {
-//   return new Promise((resolve, reject) => {
-//     resolve(data)
-//   })
-// }
-// var Login = (username) => setpromise(repos.List)
-// var ReposList = (username) => setpromise(repos.List)
-
 // export default {
-//   Login,
-//   ReposList
+//   List () {
+//     return oGet(`https://www.easy-mock.com/mock/5926ae2191470c0ac1fde242/api/frontendguide/list`)
+//   },
+//   Get (link) {
+//     return oGet(link)
+//   }
 // }
+
+import * as repos from '../../static/FontEnd.json'
+export const setpromise = data => {
+  return new Promise((resolve, reject) => {
+    resolve(data)
+  })
+}
+var List = (username) => setpromise(repos)
+var Notifications = (username) => setpromise(repos)
+
+export default {
+  List,
+  Notifications
+}

@@ -14,6 +14,26 @@ export const parseUA = () => {
   }
 }
 
+export const loadScript = (url, callback) => {
+  let script = document.createElement('script')
+  script.type = 'text/javascript'
+  script.async = 'async'
+  script.src = url
+  document.body.appendChild(script)
+  if (script.readyState) {
+    script.onreadystatechange = function () {
+      if (script.readyState === 'complete' || script.readyState === 'loaded') {
+        script.onreadystatechange = null
+        callback()
+      }
+    }
+  } else {
+    script.onload = function () {
+      callback()
+    }
+  }
+}
+
 export const urlAuthWechat = (appid, link) => {
   return `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}&redirect_uri=${encodeURIComponent(link)}&response_type=code&scope=snsapi_base#wechat_redirect`
 }
@@ -23,48 +43,6 @@ export const authorize = () => {
   let id = '82c800a8b9db1cb2a145'
   return `https://github.com/login/oauth/authorize?redirect_uri=${window.location.href}&client_id=${id}&client_secret=${secret}`
   // return `https://github.com/login/oauth/authorize?scope=public_repo&redirect_uri=${window.location.href}/?error=redirect_uri_mismatch&error_description=The+redirect_uri+MUST+match+the+registered+callback+URL+for+this+application.&error_uri=https://developer.github.com/v3/oauth/%23redirect-uri-mismatch&client_id=${id}&client_secret=${secret}`
-}
-
-/* 存储localStorage */
-export const setLocal = (name, content) => {
-  if (!name) return
-  if (typeof content !== 'string') {
-    content = JSON.stringify(content)
-  }
-  window.localStorage.setItem(name, content)
-}
-
-/* 获取localStorage */
-export const getLocal = name => {
-  if (!name) return
-  return window.localStorage.getItem(name)
-}
-
-/* 删除localStorage */
-export const removeLocal = name => {
-  if (!name) return
-  window.localStorage.removeItem(name)
-}
-
-/* 存储localStorage */
-export const setSession = (name, content) => {
-  if (!name) return
-  if (typeof content !== 'string') {
-    content = JSON.stringify(content)
-  }
-  window.sessionStorage.setItem(name, content)
-}
-
-/* 获取localStorage */
-export const getSession = name => {
-  if (!name) return
-  return window.sessionStorage.getItem(name)
-}
-
-/* 删除localStorage */
-export const removeSession = name => {
-  if (!name) return
-  window.sessionStorage.removeItem(name)
 }
 
 /* 获取url的一个参数值 */

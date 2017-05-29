@@ -50,13 +50,12 @@
     margin-top: size(6);
     margin-bottom: size(16);
     display: flex;
-    box-shadow: 0 size(2) size(6) rgba(59, 59, 60, 0.5);
+    box-shadow: 0 size(1) size(10) rgba(59, 59, 60, 0.5);
     .paper{
       width: size(100);
       height: size(100);
       overflow: hidden;
       flex: none;
-      // background: #586069;
     }
     .right{
       margin-left: size(4);

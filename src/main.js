@@ -5,8 +5,8 @@ import Vue from 'vue'
 import App from './app'
 import router from './routers'
 // import 'UTIL/flexible'
-import Alert from 'COMPONENT/alert'
-Vue.component('my-alert', Alert)
+// import Alert from 'COMPONENT/alert'
+// Vue.component('my-alert', Alert)
 
 import SVG from 'COMPONENT/v-svg'
 Vue.component('v-svg', SVG)
@@ -15,18 +15,18 @@ Vue.component('v-svg', SVG)
 // console.timeEnd('执行时间')
 
 import VueLazyload from 'vue-lazyload'
-import loading from 'ASSET/img/loading.png'
-import error from 'ASSET/img/error.png'
+// import loading from 'ASSET/img/loading.png'
+// import error from 'ASSET/img/error.png'
 Vue.use(VueLazyload, {
   preLoad: 1.3,
-  error: error,
-  loading: loading,
+  error: 'https://luuman.github.io/apple-touch-icon.png',
+  loading: 'https://luuman.github.io/apple-touch-icon.png',
   // listenEvents: ['scroll', 'wheel', 'mousewheel', 'resize', 'animationend', 'transitionend'],
   attempt: 1
 })
 
-import VueScroller from 'vue-scroller'
-Vue.use(VueScroller)
+// import VueScroller from 'vue-scroller'
+// Vue.use(VueScroller)
 
 // import vueTap from 'v-tap'
 // Vue.use(vueTap)
@@ -40,13 +40,16 @@ Vue.use(VueScroller)
 // })
 // Vue.config.productionTip = false
 
-import store from 'VUEX/store'
+// import store from 'VUEX/store'
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  store,
+  // store,
   template: '<App/>',
-  components: { App, Alert }
+  components: {
+    // Alert,
+    App
+  }
 })

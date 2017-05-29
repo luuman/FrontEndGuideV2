@@ -3,19 +3,23 @@
     <transition :name="transitionName">
       <router-view class="router-view"></router-view>
     </transition>
+    <my-alert ref="alert" v-model="alert.show" :title="alert.title" :text="alert.text" :buttons="alert.buttons" @on-show="onShow" @on-hide="onHide"></my-alert>
   </div>
 </template>
 <script>
   import 'ASSET/scss/mreset.scss'
+  import myAlert from 'COMPONENT/alert'
+  // import {setCookie} from 'UTIL/tool'
   // import '../node_modules/progressive-image/dist/index.css'
   // import { mapGetters } from 'vuex'
   export default {
     mounted () {
+      // setCookie('name', 'show time', 'h1')
     },
-    methods: {
-    },
+    components: {myAlert},
     data: () => ({
-      transitionName: ''
+      transitionName: '',
+      alert: {}
     }),
     watch: {
       '$route' (to, from) {
@@ -32,13 +36,61 @@
         }
       }
     },
-    computed: {}
+    methods: {
+      onShow () {},
+      onHide () {}
+    }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
   @import './assets/scss/mixin.scss';
+  a{
+    color: $font1;
+  }
+  nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: auto;
+    // background: $nav;
+    .nav-element {
+      // text-align: right;
+      cursor: pointer;
+      padding-bottom: 2px;
+      // margin: 1px;
+      // padding: 1px 0;
+      color: $btn;
+      transition: color 0.25s;
+    }
+
+    .navbar-active {
+      color: $btna;
+    }
+
+    .nav-label {
+      font-size: 12px;
+      padding-left: 10px;
+      svg{
+        width: 16px;
+        height: 16px;
+      }
+    }
+    li{
+      width: 100%;
+    }
+    li:hover{
+      opacity: 1;
+      background-color: $bg3;
+    }
+  }
+  .modal-active{
+    .blur{
+       filter: blur(size(3));
+     }
+  }
   #loading{
     display: none;
   }
@@ -46,11 +98,13 @@
     width: 100%;
     height: 100%;
     box-sizing: border-box;
+    overflow: scroll;
   }
   .icon {
-     width: size(20);
-     height: size(20);
-     vertical-align: -0.15em;
+     width: 20px;
+     height: 20px;
+     vertical-align: text-bottom;
+     margin-right: 6px;
      fill: currentColor;
      overflow: hidden;
   }

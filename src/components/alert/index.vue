@@ -19,7 +19,6 @@
           class="btn" v-for="(button, index) in buttons"
           @click.prevent.stop="onClick(button, index)">{{button.text}}
         </a>
-          <!-- @click="_onHide">{{button.text}} -->
       </div>
     </div>
   </VDialog>
@@ -77,9 +76,6 @@
           button.onClick()
           this.showValue = false
         }
-      },
-      _onHide () {
-        this.showValue = false
       }
     },
     created () {

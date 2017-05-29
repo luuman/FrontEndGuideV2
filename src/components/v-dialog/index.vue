@@ -40,11 +40,26 @@
       currentValue: false
     }),
     watch: {
-      value: {
-        handler: function (val) {
-          this.currentValue = val
-        },
-        immediate: true
+      // value: {
+      //   handler: function (val) {
+      //     this.currentValue = val
+      //     // 高斯模糊
+      //     if (val) {
+      //       document.body.className = 'modal-active'
+      //     } else {
+      //       document.body.className = ''
+      //     }
+      //   },
+      //   immediate: true
+      // },
+      value (val) {
+        this.currentValue = val
+        // 高斯模糊
+        if (val) {
+          document.body.className = 'modal-active'
+        } else {
+          document.body.className = ''
+        }
       },
       currentValue (val) {
         this.$emit(val ? 'on-show' : 'on-hide')
@@ -53,7 +68,7 @@
     },
     methods: {
       onTouchMove (event) {
-        !this.scroll && event.preventDefault()
+        // !this.scroll && event.preventDefault()
       },
       hide () {
         this.$parent.showValue = false
@@ -85,16 +100,17 @@
     }
   }
   .vue-dialog {
+    filter: blur(-3px);
     position: fixed;
     z-index: 5000;
     width: 80%;
-    max-width: size(300);
+    max-width: 300px;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     background-color: #fff;
     text-align: center;
-    border-radius: size(3);
-    overflow: hidden;
+    border-radius: 6px;
+    // overflow: hidden;
   }
 </style>

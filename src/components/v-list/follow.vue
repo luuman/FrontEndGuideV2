@@ -4,10 +4,6 @@
       <img v-lazy="avatarImg" :data-srcset="avatarImg">
     </div>
     <div class="avatar"><span>{{title}}</span></div>
-    <!-- <div v-if="showValue" class="big">
-      dfjdjfj
-    </div> -->
-    
   </div>
 </template>
 <script>
@@ -20,8 +16,7 @@
       time: String
     },
     data: () => ({
-      timer: 0,
-      big: {}
+      timer: 0
     }),
     computed: {
       times () {
@@ -41,8 +36,7 @@
         this.$parent.$parent.bigs()
         API.Get(`/users/${this.title}`)
         .then(res => {
-          console.log(res)
-          this.big = res
+          this.$parent.$parent.big = res
         }, () => {
         })
       },
@@ -56,7 +50,23 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
   @import '../../assets/scss/mixin.scss';
+  .list{
+    position: relative;
+    .avatar{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      text-align: center;
+      color: #FFF;
+      background: linear-gradient(116deg, rgba(47, 54, 61, 0.7),rgba(72, 72, 72, 0.8));
+      width: 100%;
+      line-height: size(20);
+      @include font-size(12);
+    }
+  }
   .paper{
+    width: 100%;
+    overflow: hidden;
     img{
       position: relative;
       z-index: -1;

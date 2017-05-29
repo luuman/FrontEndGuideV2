@@ -1,6 +1,6 @@
 <template>
   <div class="err">
-    <v-svg :data="'#icon-icon-test'"></v-svg>
+    <v-svg :data="'#icon-err'"></v-svg>
   </div>
 </template>
 <script>

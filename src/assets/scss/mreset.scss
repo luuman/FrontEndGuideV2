@@ -1,19 +1,16 @@
 @import "mixin.scss";
-// @import 'clearsrollbar.scss';
+@import 'clearsrollbar.scss';
 @import 'mobilewap.scss';
 @import 'transition.scss';
 html {
-  // overflow-y:scroll;
-  -webkit-text-size-adjust:100%;
-  -ms-text-size-adjust:100%;
-}
-html * {
-  outline:0;
-  -webkit-text-size-adjust: none;
-  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 html, body {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: PingFangSC-Regular, "Helvetica Neue", "Microsoft Yahei", 微软雅黑;
+  // font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   margin:0;
@@ -66,7 +63,7 @@ sub {
   bottom:-.25em;
 }
 a:hover {
-  text-decoration:underline;
+  text-decoration:none;
 }
 ins, a {
   text-decoration:none;
@@ -86,11 +83,14 @@ img{
 }
 html,body{
   width: 100%;
-  height: 100%;
-  overflow: hidden;
+  color: $font1;
+  background-image: $bgi;
+  background-color: $bgc;
 }
 .paper{
   img{
     width: 100%;
+    vertical-align: bottom;
   }
 }
+
