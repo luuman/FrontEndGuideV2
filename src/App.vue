@@ -3,12 +3,12 @@
     <transition :name="transitionName">
       <router-view class="router-view"></router-view>
     </transition>
-    <my-alert ref="alert" v-model="alert.show" :title="alert.title" :text="alert.text" :buttons="alert.buttons" @on-show="onShow" @on-hide="onHide"></my-alert>
+    <!-- <my-alert ref="alert" v-model="alert.show" :title="alert.title" :text="alert.text" :buttons="alert.buttons" @on-show="onShow" @on-hide="onHide"></my-alert> -->
   </div>
 </template>
 <script>
   import 'ASSET/scss/mreset.scss'
-  import myAlert from 'COMPONENT/alert'
+  // import myAlert from 'COMPONENT/alert'
   // import {setCookie} from 'UTIL/tool'
   // import '../node_modules/progressive-image/dist/index.css'
   // import { mapGetters } from 'vuex'
@@ -16,7 +16,7 @@
     mounted () {
       // setCookie('name', 'show time', 'h1')
     },
-    components: {myAlert},
+    // components: {myAlert},
     data: () => ({
       transitionName: '',
       alert: {}

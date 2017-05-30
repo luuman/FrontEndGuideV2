@@ -13,14 +13,12 @@
         <div class="T2" v-for="(T2,K2) in T1.pageC1">
           <h2 class="pageT2"><v-svg :data="'#icon-'+ T2.T2Name"></v-svg>{{T2.pageT2}}</h2>
           <div class="main">
-            <div class="lists" :style="'order:' + T2.pageC2[K3].Num" @click="onCopy(K1,K2,K3,List)" v-for="(List,K3) in T2.pageC2">
-              <!-- <a :href="List.Href" target="_blank"> -->
+            <!-- <div class="lists" :style="'order:' + T2.pageC2[K3].Num" @click="onCopy(K1,K2,K3,List)" v-for="(List,K3) in T2.pageC2">
                 <div class="list" :class="{new: List.New}">
                   <div class="title" :class="{noTitle: !List.Title}">
-                    <!-- <div class="paper"><img :src="List.Img || 'https://luuman.github.io/apple-touch-icon.png'"></div> -->
-                    <!-- <div v-lazy:background-image="List.Img || '../../assets/img/png.png'" class="paper bg-box" :style="'background-color:' + color">
+                    <div v-lazy:background-image="List.Img || '../../assets/img/png.png'" class="paper bg-box" :style="'background-color:' + color">
                       <i v-if="!List.Img">{{List.Name.charAt(0)}}</i>
-                    </div> -->
+                    </div>
                     
                     <div v-if="!List.Img" class="paper bg-box" :style="'background-color: #' + color[Math.floor(Math.random() * color.length)]">
                        <i>{{List.Name.charAt(0)}}</i>
@@ -31,9 +29,9 @@
                   </div>
                   <h4>{{List.Title}}</h4>
                 </div>
-              <!-- </a> -->
-            </div>
-            <div v-if="type" class="add" @click="addList(K1,K2,T2.pageC2)">
+            </div> -->
+            <v-list class="lists" :New="List.New" :Name="List.Name" :Title="List.Title" :Img="List.Img" :Href="List.Href" :Num="Number(List.Num)" :style="'order:' + T2.pageC2[K3].Num" v-for="(List,K3) in T2.pageC2" @click.native="onCopy(K1,K2,K3,List)"></v-list>
+            <div v-if="type" class="add" @click.native="addList(K1,K2,T2.pageC2)">
               <div class="list"></div>
             </div>
           </div>
@@ -45,7 +43,6 @@
 </template>
 <script>
   import navbar from 'UTIL/navbar'
-
   function makeNavListItem (element) {
     var li = document.createElement('li')
     var label = document.createElement('span')
@@ -57,7 +54,7 @@
     label.className = 'nav-label'
     label.innerHTML = element.innerHTML
 
-    // spot.textContent = '●'
+    // spot.textContent = ''
     spot.className = 'nav-spot'
 
     li.appendChild(label)
@@ -77,17 +74,17 @@
     return li
   }
   import comCopy from 'COMPONENT/v-list/copy'
+  import vList from 'COMPONENT/v-list/list'
   import API from 'API'
   export default {
     data: () => ({
       novelty: [],
       type: false,
       showValue: false,
-      color: ['fecc2f', '7c55fb', 'feb42e', '3189fc', '23d1b9', '22c5f8'],
       Copy: {},
       title: ''
     }),
-    components: {comCopy},
+    components: {comCopy, vList},
     mounted () {
       if (this.$route.query.type === 'copy') {
         this.type = true
@@ -122,12 +119,13 @@
           window.open(content.Href)
           return
         }
+        console.log('onCopy')
         this.showValue = true
         this.Copy = content
       },
       addList (K1, K2, content) {
         let data = this.novelty
-        content[content.length] = {'Name': 'Name', 'Title': 'Title', 'Href': '', 'Num': 99, 'Img': ''}
+        content[content.length] = {'Name': 'Name', 'Title': 'Title', 'Href': '', 'Num': '99', 'Img': ''}
         data[K1].pageC1[K2].pageC2 = content
         this.novelty = this.novelty.concat(data)
       },
@@ -184,96 +182,6 @@
     display: flex;
     flex-wrap: wrap;
     padding: 10px;
-    .lists,.add{
-      width: 100%;
-      overflow: hidden;
-      box-sizing: border-box;
-      padding: 0 10px;
-      transition: width 1s;
-      @media (min-width: 768px){
-        width: 50%;
-      }
-      @media (min-width: 992px){
-        width: 33.33%;
-      }
-      @media (min-width: 1200px){
-        width: 25%;
-      }
-      .list{
-        background: $bg3;
-        height: 87px;
-        padding: 10px;
-        border-radius: 6px;
-        // border: 1px solid #e4ecf3;
-        margin: 20px 0 0 0;
-        transition: all 0.3s ease;
-        .title{
-          display: flex;
-          align-items: center;
-          padding-bottom: 10px;
-          h3{
-            font-size: 16px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            padding-left: 10px;
-          }
-        }
-        h4{
-          font-size: 13px;
-          color: $font2;
-          display: -webkit-box !important;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          word-break: break-all;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 2;
-        }
-        .noTitle{
-          .paper{
-            width: 80px;
-            height: 80px;
-            i{
-              font-size: 32px;
-            }
-          }
-        }
-        .paper{
-          width: 40px;
-          height: 40px;
-          // flex: 1;
-          // flex-basis: 40px;
-          background-color: #607d8b;
-          background-size: cover;
-          overflow: hidden;
-          border-radius: 50%;
-          box-shadow: 0.08rem 0.16rem 0.26667rem rgba(59, 59, 60, 0.7);
-          position: relative;
-          i{
-            position: absolute;
-            font-style: normal;
-            width: 40px;
-            line-height: 40px;
-            text-align: center;
-            margin-left: -20px;
-            margin-top: -20px;
-            left: 50%;
-            top: 50%;
-            color: #FFF;
-            font-size: 18px;
-          }
-        }
-      }
-      &:hover{
-        transform: translateY(-6px);
-        box-shadow: $shadow1;
-        transition: all 0.3s ease;
-        .list{
-          // background: linear-gradient(90deg, #121c29 0%, #102848 100%);
-          // background: linear-gradient(90deg, #143456 20%, #141f2b 100%);
-        }
-      }
-    }
     .add{
       order: 100;
       width: 117px;
