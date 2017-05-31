@@ -7,43 +7,43 @@
     <div class="vue-popout">
       <div class="main">
         <div class="top">
-          <div class="paper"><img :src="list.Img"></div>
+          <div class="paper"><img :src="Img"></div>
           <div class="login">
-            <p>{{list.Name}}</p>
+            <p>{{Name}}</p>
           </div>
         </div>
         <div class="big">
           <ul>
             <li>
               <span class="svg">Name</span>
-              <input v-model="list.Name" class="text">
+              <input v-model="content.Name" class="text">
             </li>
             <li>
               <span class="svg">Title</span>
-              <input v-model="list.Title" class="text">
+              <input v-model="content.Title" class="text">
             </li>
             <li>
               <span class="svg">Href</span>
-              <input v-model="list.Href" class="text">
+              <input v-model="content.Href" class="text">
             </li>
             <li>
               <span class="svg">Img</span>
-              <input v-model="list.Img" class="text">
+              <input v-model="content.Img" class="text">
             </li>
             <li>
               <span class="svg">Num</span>
-              <input v-model="list.Num" class="text">
+              <input v-model="content.Num" class="text">
             </li>
             <li>
               <span class="svg">New</span>
-              <input v-model="list.New" class="text">
+              <input v-model="content.New" class="text">
             </li>
           </ul>
         </div>
       </div>
       <div class="footer btns">
-        <a class="btn" @click="_onHide" href="javascript:;">Follow</a>
-        <a class="btn" @click="_onHide" href="javascript:;">Look</a>
+        <a class="btn" @click="_onHide" href="javascript:;">Close</a>
+        <a class="btn" @click="add" href="javascript:;">Ok</a>
       </div>
     </div>
   </VDialog>
@@ -54,7 +54,15 @@
   export default {
     props: {
       value: Boolean,
-      list: Object,
+      Href: String,
+      Name: String,
+      New: String,
+      Img: String,
+      Title: String,
+      Num: Number,
+      K1: Number,
+      K2: Number,
+      K3: Number,
       maskTransition: {
         type: String,
         default: 'vue-mask'
@@ -64,7 +72,30 @@
         default: 'vue-dialog'
       }
     },
+    mounted () {
+    },
+    data: () => ({
+      showValue: false,
+      content: {
+        Href: '',
+        Name: '',
+        New: '',
+        Img: '',
+        Title: '',
+        Num: ''
+      }
+    }),
     watch: {
+      K3 () {
+        this.content = {
+          Href: this.Href,
+          Name: this.Name,
+          New: this.New,
+          Img: this.Img,
+          Title: this.Title,
+          Num: this.Num
+        }
+      },
       value (val) {
         this.showValue = val
       },
@@ -92,11 +123,9 @@
 
         // return this._deferred.promise
       },
-      onClick (button, index) {
-        if (typeof button.onClick === 'function') {
-          button.onClick()
-          this.showValue = false
-        }
+      add () {
+        this.showValue = false
+        this.$parent.setList(this.K1, this.K2, this.K3, this.content)
       },
       _onHide () {
         this.showValue = false
@@ -107,9 +136,6 @@
         this.showValue = this.value
       }
     },
-    data: () => ({
-      showValue: false
-    }),
     components: {VDialog}
   }
 </script>

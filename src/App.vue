@@ -40,6 +40,9 @@
       // padding: 1px 0;
       color: $btn;
       transition: color 0.25s;
+      svg{
+        margin-right: 6px;
+      }
     }
 
     .navbar-active {
@@ -80,7 +83,6 @@
      width: 20px;
      height: 20px;
      vertical-align: text-bottom;
-     margin-right: 6px;
      fill: currentColor;
      overflow: hidden;
   }
