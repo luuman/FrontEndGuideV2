@@ -2,7 +2,7 @@
   <div ref="navs" class="view">
     <!-- <Heads v-if="false" :titles="title"></Heads> -->
     <!-- {{novelty}} -->
-    <div ref="nav" class="left"></div>
+    <div ref="nav" class="left blur"></div>
     <div class="right blur">
       <div class="type" v-if="type">
         <div class="copy" @click="copy">复制</div>

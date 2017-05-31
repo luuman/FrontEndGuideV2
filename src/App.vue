@@ -1,44 +1,20 @@
 <template>
   <div id="app" class="container">
-    <transition :name="transitionName">
-      <router-view class="router-view"></router-view>
-    </transition>
-    <!-- <my-alert ref="alert" v-model="alert.show" :title="alert.title" :text="alert.text" :buttons="alert.buttons" @on-show="onShow" @on-hide="onHide"></my-alert> -->
+    <router-view class="router-view"></router-view>
   </div>
 </template>
 <script>
   import 'ASSET/scss/mreset.scss'
-  // import myAlert from 'COMPONENT/alert'
-  // import {setCookie} from 'UTIL/tool'
-  // import '../node_modules/progressive-image/dist/index.css'
-  // import { mapGetters } from 'vuex'
   export default {
     mounted () {
-      // setCookie('name', 'show time', 'h1')
     },
-    // components: {myAlert},
     data: () => ({
       transitionName: '',
       alert: {}
     }),
     watch: {
-      '$route' (to, from) {
-        const toDepth = to.path.split('/')
-        const fromDepth = from.path.split('/')
-        if (toDepth.length === fromDepth.length) {
-          if (toDepth[toDepth.length - 1] === '') {
-            this.transitionName = 'vux-pop-out'
-          } else {
-            this.transitionName = 'vux-pop-in'
-          }
-        } else {
-          this.transitionName = toDepth < fromDepth ? 'vux-pop-out' : 'vux-pop-in'
-        }
-      }
     },
     methods: {
-      onShow () {},
-      onHide () {}
     }
   }
 </script>

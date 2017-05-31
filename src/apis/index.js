@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const TOKEN = '93a89eb491ce25f7cd243bd51fd8c68b38ae77cd'
+// const TOKEN = '93a89eb491ce25f7cd243bd51fd8c68b38ae77cd'
 // const option = {
 //   headers: {
 //     'Authorization': `token ${TOKEN}`
@@ -12,8 +12,8 @@ import qs from 'qs'
 import * as Tool from 'UTIL/tool'
 // axios 配置
 axios.defaults.timeout = 5000
-axios.defaults.baseURL = 'https://api.github.com'
-axios.defaults.headers.common['Authorization'] = `token ${TOKEN}`
+// axios.defaults.baseURL = 'https://api.github.com'
+// axios.defaults.headers.common['Authorization'] = `token ${TOKEN}`
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 
 // POST传参序列化
