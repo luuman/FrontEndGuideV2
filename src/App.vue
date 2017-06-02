@@ -25,13 +25,21 @@
   a{
     color: $font1;
   }
-  nav{
+  .right{
+    transition: margin 1s;
+  }
+  .left{
     position: fixed;
     top: 0;
-    left: 0;
+    left: -50%;
     height: 100%;
     overflow: auto;
-    // background: $nav;
+    background: $bgc;
+    z-index: 999;
+    transition: left 2s;
+    @media (max-width: 768px){
+      display: none;
+    }
     .nav-element {
       // text-align: right;
       cursor: pointer;
@@ -77,7 +85,7 @@
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    overflow: scroll;
+    // overflow: scroll;
   }
   .icon {
      width: 20px;

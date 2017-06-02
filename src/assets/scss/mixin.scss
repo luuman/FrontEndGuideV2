@@ -47,6 +47,19 @@ $border: size(2) solid $border-color;
       #{$field}: $val * 3;
   }
 }
+// media
+@mixin set-media($field, $val1, $val2, $val3, $val4) {
+  #{$field}: $val1;
+  @media (min-width: 768px){
+    #{$field}: $val2;
+  }
+  @media (min-width: 992px){
+    #{$field}: $val3;
+  }
+  @media (min-width: 1200px){
+    #{$field}: $val4;
+  }
+}
 
 // 字体大小
 @mixin font-size($size){

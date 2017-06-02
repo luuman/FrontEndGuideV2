@@ -74,25 +74,25 @@ export const oPost = (url, params) => {
   })
 }
 
-export default {
-  List () {
-    return oGet(`https://www.easy-mock.com/mock/5926ae2191470c0ac1fde242/api/frontendguide/list`)
-  },
-  Get (link) {
-    return oGet(link)
-  }
-}
-
-// import * as repos from '../../static/FontEnd.json'
-// export const setpromise = data => {
-//   return new Promise((resolve, reject) => {
-//     resolve(data)
-//   })
-// }
-// var List = (username) => setpromise(repos)
-// var Notifications = (username) => setpromise(repos)
-
 // export default {
-//   List,
-//   Notifications
+//   List () {
+//     return oGet(`https://www.easy-mock.com/mock/5926ae2191470c0ac1fde242/api/frontendguide/list`)
+//   },
+//   Get (link) {
+//     return oGet(link)
+//   }
 // }
+
+import * as repos from '../../static/FontEnd.json'
+export const setpromise = data => {
+  return new Promise((resolve, reject) => {
+    resolve(data)
+  })
+}
+var List = (username) => setpromise(repos)
+var Notifications = (username) => setpromise(repos)
+
+export default {
+  List,
+  Notifications
+}

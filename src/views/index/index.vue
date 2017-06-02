@@ -1,8 +1,8 @@
 <template>
   <div ref="navs" class="view">
     <!-- nav -->
-    <div ref="nav" class="left blur"></div>
-    <div class="right blur">
+    <div ref="left" class="left blur"></div>
+    <div ref="right" class="right blur">
       <!-- Copy -->
       <div class="type">
         <div class="comment"><v-svg :data="'#icon-liuyan'"></v-svg></div>
@@ -112,8 +112,11 @@
         makeNavListItem: makeNavListItem,
         debounceTime: 100
       })
-      this.$refs.nav.innerHTML = ''
-      this.$refs.nav.appendChild(nav)
+      this.$refs.left.innerHTML = ''
+      this.$refs.left.appendChild(nav)
+      console.log(this.$refs.left.offsetWidth)
+      this.$refs.right.style.marginLeft = this.$refs.left.offsetWidth + 'px'
+      this.$refs.left.style.left = 0
     },
     computed: {
     },
@@ -124,7 +127,6 @@
           return
         }
         console.log('onCopy')
-        this.showValue = true
         this.Copy = {
           Href: content.Href,
           Name: content.Name,
@@ -136,6 +138,7 @@
           K3: K3,
           Num: content.Num
         }
+        this.showValue = true
       },
       setList (K1, K2, K3, content) {
         let data = this.novelty
@@ -167,7 +170,12 @@
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
-    margin-left: 130px;
+    // margin-left: 130px;
+    width: 100%;
+    box-sizing: border-box;
+    @media (max-width: 768px){
+      margin-left: 0;
+    }
     .pageT1{
       color: $font1;
       background-color: $bgt1;
@@ -178,8 +186,13 @@
       // max-width: 1200px;
       margin: 20px auto;
       font-size: 14px;
-      padding-left: 29px;
       box-shadow: 0 4px 16px 1px rgba(0, 0, 0, 0.05);
+    }
+    .pageT1, .pageT2{
+      padding-left: 10px;
+      svg{
+        padding-right: 10px;
+      }
     }
     .T2{
       background: $bg2;
@@ -193,14 +206,13 @@
       .pageT2{
         padding: 10px;
         border-radius: 4px 4px 0 0;
-        padding-left: 29px;
       }
     }
   }
   .main{
     display: flex;
     flex-wrap: wrap;
-    padding: 10px;
+    // padding: 10px;
     .add{
       order: 100;
       width: 117px;

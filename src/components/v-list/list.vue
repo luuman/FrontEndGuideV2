@@ -3,7 +3,10 @@
   <div class="lists">
   	<div class="list" :class="{new: New}">
   	  <div class="title" :class="{noTitle: !Title}">
-  	    <div v-if="!Img" class="paper bg-box" :style="'background-color: #' + color[Math.floor(Math.random() * color.length)]">
+  	    <div
+          v-if="!Img"
+          class="paper bg-box"
+          :style="'background-color: #' + Color + ';box-shadow: 0px 0px 7px #' + Color">
   	       <i>{{Name.charAt(0)}}</i>
   	    </div>
   	    <div v-else v-lazy:background-image="Img" class="paper bg-box">
@@ -26,6 +29,11 @@
       Img: String,
       Title: String,
       Num: Number
+    },
+    computed: {
+      Color () {
+        return this.color[Math.floor(Math.random() * this.color.length)]
+      }
     }
   }
 </script>
@@ -34,27 +42,20 @@
 <style lang="scss">
   @import '../../assets/scss/mixin.scss';
   .lists,.add{
-    width: 100%;
     overflow: hidden;
     box-sizing: border-box;
-    padding: 0 10px;
+    // padding: 0 10px;
+    padding: 10px;
     transition: width 1s;
-    @media (min-width: 768px){
-      width: 50%;
-    }
-    @media (min-width: 992px){
-      width: 33.33%;
-    }
-    @media (min-width: 1200px){
-      width: 25%;
-    }
+    cursor: pointer;
+    @include set-media(width, 100%, 50%, 33.3333%, 25%);
     .list{
       background: $bg3;
       height: 87px;
       padding: 10px;
       border-radius: 6px;
       // border: 1px solid #e4ecf3;
-      margin: 20px 0 0 0;
+      // margin: 20px 0 0 0;
       transition: all 0.3s ease;
       .title{
         display: flex;
@@ -66,6 +67,7 @@
           text-overflow: ellipsis;
           white-space: nowrap;
           padding-left: 10px;
+          text-transform: capitalize;
         }
       }
       h4{
@@ -84,6 +86,7 @@
           height: 80px;
           i{
             font-size: 32px;
+            text-transform: capitalize;
           }
         }
       }
@@ -96,6 +99,7 @@
         background-size: cover;
         overflow: hidden;
         border-radius: 50%;
+        flex-shrink: 0;
         box-shadow: 0.08rem 0.16rem 0.26667rem rgba(59, 59, 60, 0.7);
         position: relative;
         i{

@@ -1,8 +1,8 @@
 <template>
   <div class="dialog" @touchmove="onTouchMove">
-    <transition :name="maskTransition">
-      <div @click="hide"><div class="vue-mask" @click="hideOnBlur && (currentValue = false)" v-show="currentValue"></div></div>
-    </transition>
+    <div @click="hide"><transition :name="maskTransition">
+      <div class="vue-mask" @click="hideOnBlur && (currentValue = false)" v-show="currentValue"></div>
+    </transition></div>
     <transition :name="dialogTransition">
       <div class="vue-dialog" v-show="currentValue" >
         <slot></slot>
@@ -40,21 +40,8 @@
       currentValue: false
     }),
     watch: {
-      // value: {
-      //   handler: function (val) {
-      //     this.currentValue = val
-      //     // 高斯模糊
-      //     if (val) {
-      //       document.body.className = 'modal-active'
-      //     } else {
-      //       document.body.className = ''
-      //     }
-      //   },
-      //   immediate: true
-      // },
       value (val) {
         this.currentValue = val
-        // 高斯模糊
         if (val) {
           document.body.className = 'modal-active'
         } else {
@@ -68,7 +55,7 @@
     },
     methods: {
       onTouchMove (event) {
-        // !this.scroll && event.preventDefault()
+        !this.scroll && event.preventDefault()
       },
       hide () {
         this.$parent.showValue = false

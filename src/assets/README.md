@@ -15,3 +15,7 @@ color: $bg-c-1;
 
 ## 背景
 @include BgUrl('/assets/img/logo.png');
+
+## 设置响应式宽度
+0-768 768-992 992-1200 1200-
+@include set-media(width, 100%, 50%, 33.3333%, 25%);
