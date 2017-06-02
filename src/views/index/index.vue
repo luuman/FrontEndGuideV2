@@ -165,7 +165,6 @@
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
-    // margin-left: 130px;
     width: 100%;
     box-sizing: border-box;
     @media (max-width: 768px){
