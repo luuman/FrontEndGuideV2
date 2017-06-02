@@ -42,7 +42,7 @@
 <style lang="scss">
   @import '../../assets/scss/mixin.scss';
   .lists,.add{
-    overflow: hidden;
+    // overflow: hidden;
     box-sizing: border-box;
     // padding: 0 10px;
     padding: 10px;
@@ -116,14 +116,14 @@
           font-size: 18px;
         }
       }
-    }
-    &:hover{
-      transform: translateY(-6px);
-      box-shadow: $shadow1;
-      transition: all 0.3s ease;
-      .list{
-        // background: linear-gradient(90deg, #121c29 0%, #102848 100%);
-        // background: linear-gradient(90deg, #143456 20%, #141f2b 100%);
+      &:hover{
+        transform: translateY(-3px);
+        box-shadow: $shadow1;
+        transition: all 0.3s ease;
+        .list{
+          // background: linear-gradient(90deg, #121c29 0%, #102848 100%);
+          // background: linear-gradient(90deg, #143456 20%, #141f2b 100%);
+        }
       }
     }
   }

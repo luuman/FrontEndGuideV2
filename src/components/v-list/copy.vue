@@ -7,9 +7,9 @@
     <div class="vue-popout">
       <div class="main">
         <div class="top">
-          <div class="paper"><img :src="Img"></div>
+          <div class="paper"><img :src="content.Img"></div>
           <div class="login">
-            <p>{{Name}}</p>
+            <p>{{content.Name}}</p>
           </div>
         </div>
         <div class="big">

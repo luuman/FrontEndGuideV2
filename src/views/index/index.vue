@@ -141,15 +141,10 @@
         this.showValue = true
       },
       setList (K1, K2, K3, content) {
-        let data = this.novelty
-        data[K1].pageC1[K2].pageC2[K3] = content
-        this.novelty = this.novelty.concat(data)
+        this.novelty[K1].pageC1[K2].pageC2[K3] = content
       },
       addList (K1, K2, content) {
-        let data = this.novelty
-        content[content.length] = {'Name': 'Name', 'Title': 'Title', 'Href': '', 'Num': '99', 'Img': ''}
-        data[K1].pageC1[K2].pageC2 = content
-        this.novelty = this.novelty.concat(data)
+        this.novelty[K1].pageC1[K2].pageC2 = this.novelty[K1].pageC1[K2].pageC2.concat({'Name': 'Name', 'Title': 'Title', 'Href': '', 'Num': '99', 'Img': ''})
       },
       copy () {
         this.$refs.Json.select()
@@ -249,8 +244,11 @@
     }
     .input{
       position: fixed;
+      width: 100%;
+      background: $bgc;
+      padding: 2px;
       right: 0;
-      bottom: -40px;
+      bottom: 0;
       input{
         width: 100%;
         color: $font1;
